@@ -1,0 +1,2 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","14612","Click on home button and verify the all products types the dropdown","chromium","Sun Jun 08 14:40:42 IST 2025","passed","Sun Jun 08 14:40:57 IST 2025","Login and Dashboard Tests","lamdaTestE2E.spec.js","",""

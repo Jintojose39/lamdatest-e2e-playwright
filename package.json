@@ -1,0 +1,26 @@
+{
+  "name": "lamdatest-e2e-playwright",
+  "version": "1.0.0",
+  "description": "End-to-end test automation suite for LambdaTest's Ecommerce application using Playwright with JavaScript. Covers UI validations, user flows, and download handling with Allure reporting",
+  "main": "index.js",
+  "scripts": {
+      "allure:generate": "npx allure generate allure-results --clean",
+      "allure:open": "npx allure open allure-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jintojose39/lamdatest-e2e-playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jintojose39/lamdatest-e2e-playwright/issues"
+  },
+  "homepage": "https://github.com/Jintojose39/lamdatest-e2e-playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.30",
+    "allure-playwright": "^3.2.2"
+  }
+}
