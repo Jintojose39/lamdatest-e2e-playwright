@@ -1,4 +1,4 @@
-class DasboardPage {
+class DashboardPage {
   constructor(page) {
     this.page = page;
     this.homeButton = page.locator(`//span[contains(text()," Home")]`);
@@ -28,4 +28,4 @@ class DasboardPage {
   }
 }
 
-export { DasboardPage };
+export { DashboardPage };
