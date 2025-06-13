@@ -28,6 +28,9 @@ jobs:
 
     - name: Install Allure CLI
       run: npm install -g allure-commandline --save-dev
+      # ✅ Debug step: list contents of pages directory
+    - name: List pages folder
+      run: ls -la ./pages
 
     - name: Run Playwright tests with Allure
       run: npx playwright test
