@@ -1,27 +1,64 @@
-name: Playwright Tests
+name: Playwright Tests with Allure
+
 on:
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
       with:
         node-version: lts/*
+
     - name: Install dependencies
       run: npm ci
+
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npx playwright test
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
+
+    - name: Run Playwright tests with Allure
+      run: |
+        npx playwright test
+        # Generate Allure results directory
+        mkdir -p allure-results
+
+    - name: Generate Allure Report
+      run: |
+        npx allure generate ./allure-results --clean -o ./allure-report
+        zip -r allure-report.zip allure-report
+
+    - name: Upload Allure Report
+      uses: actions/upload-artifact@v4
       with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+        name: allure-report
+        path: allure-report/
+
+    - name: Send Mailtrap Email with Allure Report
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: sandbox.smtp.mailtrap.io
+        server_port: 587
+        username: ${{ secrets.EMAIL_USER }}
+        password: ${{ secrets.EMAIL_PASS }}
+        subject: 🧪 Playwright Allure Test Report – ${{ github.repository }}
+        to: test@example.com
+        from: Playwright CI <ci@example.com>
+        body: |
+          ✅ Your Playwright test suite has completed.
+
+          View GitHub Actions run:
+          👉 https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          📎 Allure HTML report is attached.
+        attachments: allure-report.zip

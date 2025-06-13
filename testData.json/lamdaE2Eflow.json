@@ -1,4 +1,5 @@
 {
-     "expectedTypes": ["All Categories", "Desktop", "Laptops", "Components","Tablets","Software","Phones & PDAs","Cameras","MP3 Players"]
+     "expectedTypes": ["All Categories", "Desktop", "Laptops", "Components","Tablets","Software","Phones & PDAs","Cameras","MP3 Players"],
+     "userCreationMessage" : "Congratulations! Your new account has been successfully created!"
    }
  

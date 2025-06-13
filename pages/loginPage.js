@@ -19,9 +19,9 @@ class LoginPage {
     await this.loginButton.click();
     await this.page.waitForTimeout(3000);
   }
-  async enterTheCredentials(userName, password) {
-    await this.userName.fill(userName);
-    await this.password.fill(password);
+  async enterTheCredentials(user) {
+    await this.userName.fill(user.email);
+    await this.password.fill(user.password);
     await this.signInButton.click();
   }
 
