@@ -38,9 +38,26 @@ jobs:
       - name: Install Allure CLI
         run: npm install -g allure-commandline@2.20.1 --force
 
-      - name: Generate Allure Report
+      - name: Generate Allure Report and verify completion
         run: |
           allure generate ./allure-results --clean -o ./allure-report
+          echo "✅ Allure Report generated, waiting for complete.html..."
+
+          for i in {1..10}; do
+            if [ -f allure-report/complete.html ]; then
+              echo "🎉 complete.html found!"
+              break
+            fi
+            echo "⏳ Waiting for complete.html... ($i)"
+            sleep 1
+          done
+
+          if [ ! -f allure-report/complete.html ]; then
+            echo "❌ complete.html not found after waiting"
+            ls -R allure-report
+            exit 1
+          fi
+
           zip -r -9 allure-report.zip allure-report
 
       - name: Upload Allure Report as Artifact
@@ -49,11 +66,12 @@ jobs:
           name: allure-report
           path: allure-report.zip
 
-      - name: Upload raw Allure results (optional)
-        uses: actions/upload-artifact@v4
+      - name: Deploy Allure Report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: allure-results
-          path: allure-results
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
 
       - name: Send Mailtrap Email with GitHub Actions Run
         if: always()
@@ -72,4 +90,5 @@ jobs:
             View GitHub Actions run:
             👉 https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-            📎 Download the Allure HTML report from workflow artifacts.
+            📎 Allure HTML report is uploaded as an artifact.
+            🌐 Live report: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
