@@ -4,11 +4,12 @@
   "description": "End-to-end test automation suite for LambdaTest's Ecommerce application using Playwright with JavaScript. Covers UI validations, user flows, and download handling with Allure reporting",
   "main": "index.js",
   "scripts": {
-    "clean:allure": "rm -rf allure-results allure-report",
-    "test": "npm run clean:allure && npx playwright test",
-    "allure:report": "npx allure generate ./allure-results --clean -o ./allure-report",
-    "allure:open": "npx allure open ./allure-report",
-    "test:with-report": "npm run test && npm run allure:report && npm run allure:open"
+  "clean:allure": "rm -rf allure-results allure-report",
+  "test": "npx playwright test",
+  "allure:report": "allure generate ./allure-results --clean -o ./allure-report",
+  "allure:open": "allure open ./allure-report",
+  "test:with-report": "npm run clean:allure && npm run test && npm run allure:report && npm run allure:open",
+  "serve:report": "http-server ./allure-report"
   },
   "repository": {
     "type": "git",
