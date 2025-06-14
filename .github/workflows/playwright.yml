@@ -26,38 +26,29 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Clean previous Allure output
-        run: rm -rf allure-results allure-report || true
+      - name: Run tests with Allure
+        run: npm run test
 
-      - name: Run Playwright tests with Allure reporter
+      - name: Install Allure CLI
+        run: npm install -g allure-commandline@2.20.1 --force
+
+      - name: Generate Allure Report (wait for complete.html)
         run: |
-          npx playwright test
-          echo "📁 Listing allure-results:"
-          ls -lah allure-results || echo "⚠️ allure-results folder is empty"
-
-      - name: Install latest Allure CLI (v2.24.1)
-        run: npm install -g allure-commandline@2.24.1 --force
-
-      - name: Generate Allure Report and verify complete.html
-        run: |
-          allure generate ./allure-results --clean -o ./allure-report
-          echo "✅ Allure Report generated. Waiting for complete.html..."
-
-          for i in {1..15}; do
-            if [ -f allure-report/complete.html ]; then
-              echo "🎉 complete.html found!"
+          npm run allure:report
+          echo "✅ Allure Report generated, waiting for complete.html..."
+          for i in {1..10}; do
+            if [ -f "./allure-report/widgets/complete.html" ]; then
+              echo "✅ complete.html is ready!"
               break
             fi
             echo "⏳ Waiting for complete.html... ($i)"
             sleep 1
           done
-
-          if [ ! -f allure-report/complete.html ]; then
-            echo "❌ complete.html not found after waiting"
-            ls -R allure-report
+          if [ ! -f "./allure-report/widgets/complete.html" ]; then
+            echo "❌ complete.html not found. Failing."
+            ls -la ./allure-report/widgets/
             exit 1
           fi
-
           zip -r -9 allure-report.zip allure-report
 
       - name: Upload Allure Report as Artifact
@@ -65,26 +56,3 @@ jobs:
         with:
           name: allure-report
           path: allure-report.zip
-
-      # ❌ Removed GitHub Pages deployment per your request
-
-      - name: Send Mailtrap Email with GitHub Actions Run
-        if: always()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: sandbox.smtp.mailtrap.io
-          server_port: 587
-          username: ${{ secrets.EMAIL_USER }}
-          password: ${{ secrets.EMAIL_PASS }}
-          subject: 🧪 Playwright E2E Flow Test Report – ${{ github.repository }}
-          to: test@example.com
-          from: Playwright CI <ci@example.com>
-          body: |
-            ✅ Your Playwright test suite has completed.
-
-            View GitHub Actions run:
-            👉 https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
-            📎 Allure HTML report is attached as an artifact.
-            Download and unzip to view: allure-report/index.html
-
