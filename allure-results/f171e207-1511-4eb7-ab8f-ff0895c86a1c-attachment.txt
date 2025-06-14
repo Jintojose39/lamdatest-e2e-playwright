@@ -1,0 +1,12 @@
+Congratulations! Your new account has been successfully created!
+Actual Product Types on Page: [
+  'All Categories',
+  'Desktops',
+  'Laptops',
+  'Components',
+  'Tablets',
+  'Software',
+  'Phones & PDAs',
+  'Cameras',
+  'MP3 Players'
+]
