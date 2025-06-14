@@ -26,32 +26,27 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-    # ✅ Clear previous Allure results
     - name: Clean Allure output folders
       run: rm -rf allure-results allure-report || true
 
-    # ✅ Run Playwright tests
     - name: Run Playwright tests with Allure
       run: npx playwright test
 
-    # ✅ Install correct Allure CLI version (v2.20.1)
     - name: Install Allure CLI
       run: npm install -g allure-commandline@2.20.1 --force
 
-    # ✅ Generate and zip Allure report
-    - name: Generate Allure Report
+    - name: Generate Allure Report and patch base href
       run: |
         allure generate ./allure-results --clean -o ./allure-report
+        sed -i 's|<head>|<head><base href="/lamdatest-e2e-playwright/">|' ./allure-report/index.html
         zip -r -9 allure-report.zip allure-report
 
-    # ✅ Upload zipped Allure Report as Artifact
     - name: Upload Allure Report as Artifact
       uses: actions/upload-artifact@v4
       with:
         name: allure-report
         path: allure-report.zip
 
-    # ✅ Deploy to GitHub Pages
     - name: Deploy Allure Report to GitHub Pages
       if: always()
       uses: peaceiris/actions-gh-pages@v3
@@ -59,7 +54,6 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./allure-report
 
-    # ✅ Email notification with GitHub Run & Allure details
     - name: Send Mailtrap Email with Link to GitHub Actions Run
       if: always()
       uses: dawidd6/action-send-mail@v3
@@ -78,4 +72,4 @@ jobs:
           👉 https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
           📎 Allure HTML report is uploaded as an artifact.
-          🌐 Live report: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+          🌐 Live report: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
