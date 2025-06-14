@@ -29,9 +29,11 @@ jobs:
     - name: Run Playwright tests with Allure
       run: npx playwright test
 
-    - name: Install Allure CLI (stable)
+    # ✅ Install correct Allure CLI version (v2.20.1)
+    - name: Install Allure CLI
       run: npm install -g allure-commandline@2.20.1 --force
 
+    # ✅ Use globally installed Allure CLI (no npx!)
     - name: Generate Allure Report
       run: |
         allure generate ./allure-results --clean -o ./allure-report
