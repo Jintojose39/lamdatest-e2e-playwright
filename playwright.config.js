@@ -49,19 +49,20 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: 'Chromium',
       use: { ...devices['Desktop Chrome'] },
+      outputDir: 'test-results/chromium', // separate output
     },
-
     {
-      name: 'firefox',
+      name: 'Firefox',
       use: { ...devices['Desktop Firefox'] },
+      outputDir: 'test-results/firefox',
     },
-
     {
-      name: 'webkit',
+      name: 'WebKit',
       use: { ...devices['Desktop Safari'] },
-    },
+      outputDir: 'test-results/webkit',
+    }
 
     /* Test against mobile viewports. */
     // {

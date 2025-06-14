@@ -31,25 +31,25 @@ test.describe("End To Flow For Ecommerce Applciation", () => {
     */
   });
 
-  test.fixme("Click on home button and verify the all products types the dropdown", async ({
-    page,
-  }) => {
-    const po = new POManager(page);
-    await po.getDashboardPage().clickOnHomeAndValidate();
-    await expect(page).toHaveURL(
-      "https://ecommerce-playground.lambdatest.io/index.php?route=common/home"
-    );
-    await po.getDashboardPage().allCategories.click();
-    const isValid = await po
-      .getDashboardPage()
-      .validateTheElements(lamdaE2Eflow.expectedTypes);
-    expect(
-      isValid,
-      "Expected product types to be present in the dropdown"
-    ).toBeTruthy();
-  });
+  // test("Click on home button and verify the all products types the dropdown", async ({
+  //   page,
+  // }) => {
+  //   const po = new POManager(page);
+  //   await po.getDashboardPage().clickOnHomeAndValidate();
+  //   await expect(page).toHaveURL(
+  //     "https://ecommerce-playground.lambdatest.io/index.php?route=common/home"
+  //   );
+  //   await po.getDashboardPage().allCategories.click();
+  //   const isValid = await po
+  //     .getDashboardPage()
+  //     .validateTheElements(lamdaE2Eflow.expectedTypes);
+  //   expect(
+  //     isValid,
+  //     "Expected product types to be present in the dropdown"
+  //   ).toBeTruthy();
+  // });
 
-  test("@smoke Search the product and and proceed add to cart", async ({
+  test("Search the product and and proceed add to cart", async ({
     page,
   }) => {
     const po = new POManager(page);
