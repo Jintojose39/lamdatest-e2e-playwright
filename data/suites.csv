@@ -1,4 +1,4 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Sat Jun 14 04:59:19 UTC 2025","Sat Jun 14 04:59:32 UTC 2025","12316","Chromium","lamdaTestE2E.spec.js","End To Flow For Ecommerce Applciation","","","Search the product and and proceed add to cart",""
-"passed","Sat Jun 14 04:59:35 UTC 2025","Sat Jun 14 04:59:42 UTC 2025","7202","Firefox","lamdaTestE2E.spec.js","End To Flow For Ecommerce Applciation","","","Search the product and and proceed add to cart",""
-"passed","Sat Jun 14 04:59:44 UTC 2025","Sat Jun 14 04:59:54 UTC 2025","10263","WebKit","lamdaTestE2E.spec.js","End To Flow For Ecommerce Applciation","","","Search the product and and proceed add to cart",""
+"passed","Sat Jun 14 05:25:31 UTC 2025","Sat Jun 14 05:25:39 UTC 2025","7595","Chromium","lamdaTestE2E.spec.js","End To Flow For Ecommerce Applciation","","","Search the product and and proceed add to cart",""
+"passed","Sat Jun 14 05:25:49 UTC 2025","Sat Jun 14 05:26:01 UTC 2025","11587","WebKit","lamdaTestE2E.spec.js","End To Flow For Ecommerce Applciation","","","Search the product and and proceed add to cart",""
+"passed","Sat Jun 14 05:25:40 UTC 2025","Sat Jun 14 05:25:48 UTC 2025","8074","Firefox","lamdaTestE2E.spec.js","End To Flow For Ecommerce Applciation","","","Search the product and and proceed add to cart",""
