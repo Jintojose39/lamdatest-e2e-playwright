@@ -2,7 +2,6 @@ import { test, expect } from "@playwright/test";
 import { POManager } from "../utils/POManager";
 import env from "../testData.json/env.json";
 import lamdaE2Eflow from "../testData.json/lamdaE2Eflow.json";
-import loginCredentials from "../testData.json/loginCredentials.json";
 let cartCount;
 let orderTitle;
 let orderConfirmMessage;
@@ -102,7 +101,7 @@ test.describe("End To End Flow For Ecommerce Application", () => {
   }, testInfo) => {
     testInfo.annotations.push({
       type: "feature",
-      description: "Billing Functionality",
+      description: "Order Functionality",
     });
     const po = new POManager(page);
     await po.getHomePage().searchTheProduct("iPod Classic");
@@ -122,7 +121,7 @@ test.describe("End To End Flow For Ecommerce Application", () => {
     expect(orderConfirmMessage.trim()).toBe("Your order has been placed!");
   });
 
-  test("Verify the order history After placed the order", async ({
+  test("Verify the order history After placed the order and log out from the account", async ({
     page,
   }, testInfo) => {
     testInfo.annotations.push({
@@ -153,5 +152,7 @@ test.describe("End To End Flow For Ecommerce Application", () => {
     const today = new Date();
     const formattedToday = today.toLocaleDateString("en-GB");
     expect(orderDate).toBe(formattedToday);
+    await po.getDashboardPage().logOut();
+    await expect(page).toHaveURL(/route=account\/logout/);
   });
 });
