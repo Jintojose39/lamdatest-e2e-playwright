@@ -94,7 +94,7 @@ npx playwright show-report
 ### 🧪 Allure Report Preview
 
 ![Allure Report cross browser](./report-screenshots/allure-report-cross-browser.png)
-![Allure Report Graphs](./report-screenshots/allure-report-graphs.png.png)
+![Allure Report Graphs](./report-screenshots/allure-report-graphs.png)
 ![Allure Report Pass](report-screenshots/allure-report-pass.png)
 
 ### 🧪 PlayWright Report Preview
