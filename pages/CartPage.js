@@ -24,6 +24,8 @@ class CartPage {
     console.log(itemCount);
     return itemCount ;
   }
+
+  
   
 }
 

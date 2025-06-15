@@ -4,6 +4,8 @@ import { DashboardPage } from '../pages/DashboardPage.js';
 import { RegisterPage } from '../pages/RegisterPage.js';
 import {CommonPage} from '../pages/CommonPage.js';
 import {CartPage} from '../pages/CartPage.js'
+import { CheckOutPage } from '../pages/CheckOutPage.js';
+import { OrderPage } from '../pages/OrderPage.js';
 
 export class POManager {
   constructor(page) {
@@ -14,6 +16,8 @@ export class POManager {
     this.commonPage = new CommonPage(page);
     this.registerPage = new RegisterPage(page);
     this.cartPage = new CartPage(page);
+    this.checkOutPage = new CheckOutPage(page);
+    this.orderPage = new OrderPage(page);
   }
 
   getHomePage() {
@@ -37,5 +41,11 @@ export class POManager {
   }
   getCartPage() {
     return this.cartPage;
+  }
+  getCheckOutPage() {
+    return this.checkOutPage;
+  }
+  getOrderPage() {
+    return this.orderPage;
   }
 }

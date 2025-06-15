@@ -10,9 +10,7 @@ class RegisterPage extends CommonPage {
     this.emailInput = page.locator("#input-email");
     this.telephoneInput = page.locator("#input-telephone");
     this.passwordInput = page.locator("#input-password");
-    this.confirmPasswordInput = page.locator("#input-confirm"); // Fixed ID
-    this.confirmCheck = page.locator('input[name="agree"]'); // Fixed selector
-    this.continueButton = page.locator('input[type="submit"]');
+    this.confirmPasswordInput = page.locator("#input-confirm");
     this.registerButton = page.locator(`//span[contains(text()," Register")]`);
     this.registeredMessage = page.locator(`//h1//following-sibling::p[2]`);
   }
