@@ -6,6 +6,9 @@ import {CommonPage} from '../pages/CommonPage.js';
 import {CartPage} from '../pages/CartPage.js'
 import { CheckOutPage } from '../pages/CheckOutPage.js';
 import { OrderPage } from '../pages/OrderPage.js';
+/**
+ * @typedef {import('@playwright/test').Page} Page
+ */
 
 export class POManager {
   constructor(page) {

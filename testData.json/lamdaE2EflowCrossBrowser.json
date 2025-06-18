@@ -1,0 +1,18 @@
+[{
+     "expectedTypes": ["All Categories", "Desktop", "Laptops", "Components","Tablets","Software","Phones & PDAs","Cameras","MP3 Players"],
+     "userCreationMessage" : "Congratulations! Your new account has been successfully created!",
+     "browser":"chromium"
+   },
+   {
+    "expectedTypes": ["All Categories", "Desktop", "Laptops", "Components","Tablets","Software","Phones & PDAs","Cameras","MP3 Players"],
+    "userCreationMessage" : "Congratulations! Your new account has been successfully created!",
+    "browser":"firefox"
+  },
+  {
+    "expectedTypes": ["All Categories", "Desktop", "Laptops", "Components","Tablets","Software","Phones & PDAs","Cameras","MP3 Players"],
+    "userCreationMessage" : "Congratulations! Your new account has been successfully created!",
+    "browser":"webkit"
+  }
+
+  ]
+ 
